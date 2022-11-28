@@ -103,9 +103,7 @@ def search(text):
     return (item_parser(new_parser, new_url), new_url)
 
 @task
-def search_task(request):
-    text = request.form['text']
-
+def search_task(text, response_url):
     (card_info, url) = search(text)
     category_text = card_info['Category']
     if "Card" in category_text:
@@ -113,6 +111,7 @@ def search_task(request):
     else:
         s = format_relic_desc(card_info)
 
+    print('here')
 
     button_payload = {
         'attachments': [{
@@ -125,6 +124,8 @@ def search_task(request):
             'text': s
         }]
     }
+
+    print('here')
 
     data = {
         'response_type': 'ephemeral',
@@ -155,7 +156,9 @@ def search_task(request):
         }]
     }
 
-    requests.post(request.form['response_url'], json=data) 
+    print('here')
+
+    requests.post(response_url, json=data) 
     
 
 @app.route('/sts_search', methods=['POST'])
@@ -163,7 +166,7 @@ def sts_search():
     if not is_request_valid(request):
         abort(400)
 
-    search_task(request)
+    search_task(request.form['text'], request.form['response_url'])
 
     return ''
 

@@ -6,7 +6,7 @@ import json
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from flask import abort, Flask, jsonify, request
-from zappa.async import task
+from zappa.asynchronous import task
 
 app = Flask(__name__)
 
@@ -96,10 +96,10 @@ def search(text):
     item_page = urlopen(item_url)
     parser = BeautifulSoup(item_page, 'html.parser')
 
-    new_url = parser.find('a', href=True, attrs={'class': 'unified-search__result__link'})
+    new_url = parser.find('a', href=True, attrs={'class': 'unified-search__result__link'})['href']
     new_page = urlopen(new_url)
     new_parser = BeautifulSoup(new_page, 'html.parser')
-  
+
     return (item_parser(new_parser, new_url), new_url)
 
 @task

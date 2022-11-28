@@ -1,0 +1,20 @@
+{
+    "prod": {
+        "app_function": "sts-item-desc.app",
+        "aws_region": "us-east-1",
+        "exclude": [
+            "__pycache__",
+            ".python-version",
+            "requirements.txt",
+            "zappa_settings.json"
+        ],
+        "keep_warm": true,
+        "keep_warm_expression": "rate(5 minutes)",
+        "memory_size": 128,
+        "profile_name": "default",
+        "project_name": "sts-item-desc",
+        "runtime": "python3.9",
+        "s3_bucket": "sts-item-desc",
+        "timeout_seconds": 30
+    }
+}

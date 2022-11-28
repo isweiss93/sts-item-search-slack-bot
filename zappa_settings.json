@@ -6,7 +6,8 @@
             "__pycache__",
             ".python-version",
             "requirements.txt",
-            "zappa_settings.json"
+            "zappa_settings.json",
+	    "venv/"
         ],
         "keep_warm": true,
         "keep_warm_expression": "rate(5 minutes)",

@@ -7,7 +7,7 @@
             ".python-version",
             "requirements.txt",
             "zappa_settings.json",
-	    "venv/"
+            "venv/"
         ],
         "keep_warm": true,
         "keep_warm_expression": "rate(5 minutes)",
